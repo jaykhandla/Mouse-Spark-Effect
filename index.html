@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Interactive spark effects demo. Click anywhere to trigger spark animations.">
+    <meta name="keywords" content="spark, effects, animation, mouse, javascript, CSS">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Spark effects">
+    <meta property="og:description" content="Interactive spark effects demo.">
+    <meta property="og:image" content="https://github.com/jaykhandla/Mouse-Spark-Effect-/blob/main/Mouse%20Spark%20Effects.png">
+    <meta property="og:url" content="https://github.com/jaykhandla">
+    <title>Spark effects</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        div {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+            background-color: black;
+        }
+
+        .spark {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            transform: translateY(-20px);
+        }
+
+        .spark span {
+            position: absolute;
+            width: 2px;
+            height: 20px;
+            pointer-events: none;
+            transform-origin: bottom;
+            filter: drop-shadow(0 0 20px #0f0) drop-shadow(0 0 40px #0f0);
+        }
+
+        .spark span::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #0f0;
+            animation: animate 2s ease-in-out forwards;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: translateY(100%);
+            }
+
+            100% {
+                transform: translateY(1000%);
+            }
+        }
+    </style>
+
+</head>
+<body>
+
+    <div>
+        Spark effects
+    </div>
+
+    <script>
+        let container = document.querySelector('body');
+        container.addEventListener('click', function (event) {
+            let spark = document.createElement('div');
+            spark.classList.add('spark');
+            spark.style.top = (event.clientY - container.offsetTop) + 'px';
+            spark.style.left = (event.clientX - container.offsetLeft) + 'px';
+            spark.style.filter = 'hue-rotate(' + Math.random() * 360 + 'deg)';
+            container.appendChild(spark);
+
+            for (var i = 0; i <= 7; i++) {
+                let span = document.createElement('span');
+                span.style.transform = 'rotate(' + (i * 45) + 'deg)';
+                spark.appendChild(span);
+            };
+
+            setTimeout(function () {
+                spark.remove();
+            }, 1500);
+        });
+    </script>
+
+</body>
+</html>
