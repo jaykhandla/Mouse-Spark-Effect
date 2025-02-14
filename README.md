@@ -35,8 +35,3 @@ Click anywhere on the screen to trigger the spark animation. Each click will cre
 ## Live Demo
 
 You can view the live demo of this effect hosted on GitHub Pages [here](https://github.com/jaykhandla/Mouse-Spark-Effect-).
-
-## Acknowledgements
-
-- Inspiration taken from interactive effects demos available on various developer platforms.
-- CSS keyframes and JavaScript event handling used to create the spark animation.
